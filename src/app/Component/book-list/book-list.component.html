@@ -1,0 +1,18 @@
+<div class="book-list" *ngIf="books && books.length > 0">
+    <div *ngFor="let book of books | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+         (click)="selectBook(book)" 
+         class="book-item">
+      <img *ngIf="book.coverImageUrl" [src]="book.coverImageUrl" alt="Cover" class="book-cover" (error)="onImageError($event)">
+      <div *ngIf="!book.coverImageUrl" class="book-cover-not-found"></div>
+      <div class="book-details">
+        <h2>{{ book.title }}</h2>
+        <p>{{ book.authors.join(', ') }}</p>
+        <p>{{ book.publishYear }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pagination-container" *ngIf="books && books.length > itemsPerPage">
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>
+  

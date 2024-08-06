@@ -1,0 +1,36 @@
+<div class="search-container">
+  <input [(ngModel)]="searchQuery" (ngModelChange)="onSearch()" placeholder="Search for books" class="search-input" />
+</div>
+
+<!-- <div class="search-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Search for books</mat-label>
+    <input
+      type="text"
+      matInput
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearch()"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let book of filteredBooks" (onSelectionChange)="onSelectBook(book)">
+        {{ book.title }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field> -->
+
+  <!-- Filters -->
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Genre</mat-label>
+    <mat-select (selectionChange)="onGenreChange($event.value)">
+      <mat-option *ngFor="let genre of genres" [value]="genre">{{ genre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Publication Year</mat-label>
+    <mat-select (selectionChange)="onYearChange($event.value)">
+      <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+<!-- </div> -->

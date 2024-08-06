@@ -1,0 +1,7 @@
+<div class="home-container">
+    <app-search-book (search)="onSearch($event)"></app-search-book>
+    <app-book-list [books]="books"></app-book-list>
+    <ng-template #loading>
+        <p>Loading...</p>
+    </ng-template>
+</div>
