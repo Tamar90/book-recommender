@@ -28,9 +28,9 @@ export class HomeScreenComponent implements OnInit {
       this.books = cachedBooks;
       this.isLoading = false;
     } else {
-      this.bookService.searchBooks('bestsellers&limit=40').subscribe({
+      this.bookService.getTrendingBooks().subscribe({
         next: (data) => {
-          this.books = data.docs.map((item: any) => new Book(item));
+          this.books = data.works?.map((item: any) => new Book(item));
           this.bookStateService.setBooks(this.books);
           this.isLoading = false;
         },

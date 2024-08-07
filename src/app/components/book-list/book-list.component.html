@@ -8,7 +8,7 @@
       <div *ngIf="hoveredBook === book" class="book-details">
         <h2>{{ book.title }}</h2>
         <p *ngIf="book.authors">{{ book.authors.join(', ') }}</p>
-        <p>{{book.publishYear | date:'yyyy' }}</p>
+        <p>{{book.publishYear }}</p>
       </div>
     </div>
   </div>

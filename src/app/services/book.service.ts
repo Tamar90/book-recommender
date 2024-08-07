@@ -14,7 +14,9 @@ export class BookService {
   searchBooks(query: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/search.json?q=${query}`);
   }
-
+  getTrendingBooks(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/trending/now.json`);
+  }
   getBookDetails(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}${id}.json`);
   }
