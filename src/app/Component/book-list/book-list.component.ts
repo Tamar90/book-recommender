@@ -15,7 +15,7 @@ export class BookListComponent {
   @Input() books: Book[] = [];
 
   currentPage: number = 1;
-  itemsPerPage: number = 21;
+  itemsPerPage: number = 15;
   hoveredBook: Book | null = null;
 
   constructor(private router: Router) { }

@@ -23,4 +23,7 @@ export class HomeScreenComponent implements OnInit {
   ngOnInit() {
     this.books = this.route.snapshot.data['books'];
   }
+  onSearch(books: Book[]) {
+    this.books = books;
+  }
 }

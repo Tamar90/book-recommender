@@ -1,14 +1,15 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookService } from '../../services/book.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Subject, debounceTime, switchMap, catchError, of } from 'rxjs';
 import { Book } from '../../models/book.model';
 import { CommonModule } from '@angular/common';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
+import { BookStateService } from '../../states/book-state-service';
 
 @Component({
   selector: 'app-search-book',
@@ -23,8 +24,10 @@ export class SearchBookComponent implements OnInit {
   books: Book[] = [];
   searchQuery: string = '';
   private searchSubject = new Subject<string>();
+  @Output() search = new EventEmitter<Book[]>();
+  @ViewChild(MatAutocompleteTrigger) autocompleteTrigger!: MatAutocompleteTrigger;
 
-  constructor(private bookService: BookService, private router: Router) { }
+  constructor(private bookService: BookService, private bookStateService: BookStateService, private router: Router) { }
 
   ngOnInit() {
     this.searchSubject.pipe(
@@ -50,12 +53,21 @@ export class SearchBookComponent implements OnInit {
     if (this.searchQuery.trim()) {
       this.searchSubject.next(this.searchQuery);
     }
+    else {
+      this.search.emit(this.bookStateService.getBooks());
+      this.autocompleteTrigger.closePanel();
+    }
+
   }
 
   selectBook(book: Book) {
     if (book.id) {
       this.router.navigate(['/book', book.id]);
     }
+  }
+  onEnter() {
+    this.search.emit(this.books);
+    this.autocompleteTrigger.closePanel();
   }
 
 }

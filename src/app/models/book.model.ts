@@ -8,6 +8,8 @@ export class Book {
   description?: string;
   isHovered?: boolean = false;
   cover_i?: string;
+  genre?: string;
+
 
   constructor(data: any) {
     this.id = data.key || null;
@@ -18,5 +20,6 @@ export class Book {
     this.subjects = data.subjects || null;
     this.description = data.description || null;
     this.cover_i = data.cover_i || null;
+    this.genre = data.genre || null;
   }
 }
