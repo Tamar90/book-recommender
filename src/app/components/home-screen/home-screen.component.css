@@ -25,3 +25,10 @@
   position: relative;
   z-index: 1;
 }
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

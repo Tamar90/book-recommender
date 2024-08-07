@@ -24,7 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class SearchBookComponent implements OnInit {
   books: Book[] = [];
   searchQuery: string = '';
-  isLoading: boolean = false;  
+  isLoading: boolean = false;
   private searchSubject = new Subject<string>();
   @Output() search = new EventEmitter<Book[]>();
   @ViewChild(MatAutocompleteTrigger) autocompleteTrigger!: MatAutocompleteTrigger;
@@ -35,30 +35,34 @@ export class SearchBookComponent implements OnInit {
     this.searchSubject.pipe(
       debounceTime(500),
       switchMap(query => {
-        this.isLoading = true; 
+        if (query.length < 2) return of([]);
+        this.isLoading = true;
         return this.bookService.searchBooks(query).pipe(
           catchError(error => {
             return of([]);
           }),
-          tap(() => this.isLoading = false) 
+          tap(() => this.isLoading = false)
         );
       })
     ).subscribe({
       next: (data) => {
-        this.books = data.docs.map((item: any) => new Book(item));
+        this.books = data.docs?.map((item: any) => new Book(item));
         this.isLoading = false;
       },
       error: (error) => {
         console.error('Error:', error);
-        this.isLoading = false;  
+        this.isLoading = false;
       }
     });
   }
 
   onSearch() {
-    if (this.searchQuery.trim()) {
+
+    if (this.searchQuery.trim() !== '') {
+      console.log(this.searchQuery.trim());
       this.searchSubject.next(this.searchQuery);
     } else {
+      this.isLoading = false;
       this.search.emit(this.bookStateService.getBooks());
       this.autocompleteTrigger.closePanel();
     }
