@@ -1,18 +1,17 @@
 <div class="search-container">
   <mat-form-field appearance="fill">
     <mat-label>Search for books</mat-label>
-    <input 
-      matInput 
-      [(ngModel)]="searchQuery" 
-      [matAutocomplete]="auto"
-      placeholder="Search for books" 
-      (ngModelChange)="onSearch()"
-    />
+    <input matInput [(ngModel)]="searchQuery" [matAutocomplete]="auto" placeholder="Search books..."
+      (ngModelChange)="onSearch()" />
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let book of filteredBooks" [value]="book.title">
-        {{ book.title }}
+      <mat-option *ngFor="let book of books" [value]="book.title" (onSelectionChange)="selectBook(book)">
+        <div class="autocomplete-item">
+          <img *ngIf="book.cover_i" [src]="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-S.jpg'"
+            class="book-cover" alt="{{ book.title }} cover">
+          <div *ngIf="!book.cover_i" class="book-cover-not-found book-cover"></div>
+          <span class="book-title">{{ book.title }}</span>
+        </div>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </div>
-

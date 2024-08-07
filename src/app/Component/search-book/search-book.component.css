@@ -1,42 +1,42 @@
 .search-container {
   width: 100%;
-  max-width: 600px; /* רוחב מקסימלי לתיבה */
-  margin: 0 auto; /* מיקום במרכז */
-  padding: 20px; /* ריווח פנימי */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
-  justify-content: center; /* מרכז את התיבה אופקית */
+  justify-content: center;
 }
 
 mat-form-field {
-  width: 100%; /* מבטיח שהתיבה תתפוס את כל רוחב הקונטיינר */
+  width: 100%;
 }
 
 mat-form-field .mat-form-field-wrapper {
-  border-radius: 8px; /* פינות עגולות */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* הצללה קלה */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 mat-form-field .mat-form-field-flex {
-  background-color: #ffffff; /* צבע רקע לבן */
-  border-radius: 4px; /* פינות עגולות */
+  background-color: #ffffff;
+  border-radius: 4px;
 }
 
 mat-form-field .mat-form-field-label {
-  color: #333; /* צבע טקסט כהה */
+  color: #333;
 }
 
 .mat-form-field-underline {
-  display: none; /* הסתרת הקו התחתון */
+  display: none;
 }
 
 mat-form-field .mat-form-field-outline {
-  border-color: #007bff; /* צבע הגבול */
+  border-color: #007bff;
 }
 
 mat-form-field .mat-form-field-outline .mat-form-field-outline-start,
 mat-form-field .mat-form-field-outline .mat-form-field-outline-end,
 mat-form-field .mat-form-field-outline .mat-form-field-outline-notched {
-  border-color: #007bff; /* צבע הגבול */
+  border-color: #007bff;
 }
 
 .mat-option {
@@ -45,5 +45,30 @@ mat-form-field .mat-form-field-outline .mat-form-field-outline-notched {
 }
 
 .mat-option:hover {
-  background-color: #f0f0f0; /* צבע רקע בהhover */
+  background-color: #f0f0f0;
+}
+
+.autocomplete-item {
+  display: flex;
+  align-items: center;
+}
+
+.book-cover {
+  width: 40px;
+  height: 60px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.book-cover-not-found {
+  background-image: url('../../../assets/placeolder-book.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.book-title {
+  font-size: 14px;
 }

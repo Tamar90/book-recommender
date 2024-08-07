@@ -1,9 +1,13 @@
 <div *ngIf="book" class="book-container">
     <h1 class="book-title">{{ book.title }}</h1>
     <h2 class="book-authors">{{ getAuthors() }}</h2>
-    <img *ngIf="book.coverImageUrl" [src]="book.coverImageUrl" alt="Cover" class="book-cover" (error)="onImageError($event)">
+    <img *ngIf="book.coverImageUrl" [src]="book.coverImageUrl" alt="Cover" class="book-cover"
+        (error)="onImageError($event)">
     <div *ngIf="!book.coverImageUrl" class="book-cover-not-found"></div>
-    <p class="book-publication-year"><strong>Publication Year:</strong> {{ getPublicationYear() }}</p>
-    <p class="book-genres"><strong>Genres:</strong> {{ book.subjects?.join(', ') }}</p>
-    <p class="book-description"><strong>Synopsis:</strong> {{ book.description || 'No description available.' }}</p>
+    <p *ngIf="book.publishYear" class="book-publication-year"><strong>Publication Year:</strong> {{book.publishYear |
+        date:'yyyy'}}</p>
+    <p *ngIf="book.subjects" class="book-genres"><strong>Genres:</strong> {{ book.subjects.join(', ') }}</p>
+    <p *ngIf="book.description" class="book-description"><strong>Synopsis:</strong> {{ book.description || 'No
+        description available.' }}</p>
 </div>
+<div *ngIf="errorMessage">{{errorMessage}}</div>

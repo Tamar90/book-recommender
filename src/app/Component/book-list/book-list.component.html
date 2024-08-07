@@ -7,8 +7,8 @@
       <div *ngIf="!book.coverImageUrl" class="book-cover-not-found book-cover"></div>
       <div *ngIf="hoveredBook === book" class="book-details">
         <h2>{{ book.title }}</h2>
-        <p>{{ book.authors.join(', ') }}</p>
-        <p>{{ book.publishYear }}</p>
+        <p *ngIf="book.authors">{{ book.authors.join(', ') }}</p>
+        <p>{{book.publishYear | date:'yyyy' }}</p>
       </div>
     </div>
   </div>

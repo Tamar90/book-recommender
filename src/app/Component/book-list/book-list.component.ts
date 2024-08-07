@@ -9,22 +9,27 @@ import { NgxPaginationModule } from 'ngx-pagination';
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.css'],
   standalone: true,
-  imports: [CommonModule, NgxPaginationModule] 
+  imports: [CommonModule, NgxPaginationModule]
 })
 export class BookListComponent {
   @Input() books: Book[] = [];
-  currentPage: number = 1; 
-  itemsPerPage: number = 10;
+
+  currentPage: number = 1;
+  itemsPerPage: number = 21;
   hoveredBook: Book | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   onImageError(event: Event) {
     (event.target as HTMLImageElement).src = '../../../assets/placeolder-book.png';
   }
 
   selectBook(book: Book) {
-    this.router.navigate(['/book', book.id]);
+    if (book.id) {
+      this.router.navigate(['/book', book.id]);
+    } else {
+      this.router.navigate(['/book-not-found']);
+    }
   }
 
   onPageChange(page: number) {

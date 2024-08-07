@@ -12,43 +12,38 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./book-details.component.css'],
   standalone: true,
   providers: [BookService],
-  imports: [FormsModule, HttpClientModule,CommonModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
 
 })
 export class BookDetailsComponent implements OnInit {
-  book: Book | undefined; 
+  book: Book | null = null;
   errorMessage: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService
-  ) {}
+  ) { }
 
   ngOnInit() {
     const bookId = this.route.snapshot.paramMap.get('id');
     if (bookId) {
       this.bookService.getBookDetails(bookId).subscribe({
         next: (data: any) => {
-          console.log(data);
           this.book = data;
         },
         error: (error) => {
-          this.errorMessage = 'Unable to fetch book details. Please try again later.';
-          console.error('Error fetching book details:', error);
+          this.errorMessage = 'There is no book details we are sorry.';
         }
       });
     } else {
-      this.errorMessage = 'No book ID provided.';
+      this.errorMessage = 'There is no ID.';
     }
   }
 
   getAuthors(): string {
-    return this.book?.authors.map((author: any) => author.author.key.split('/').pop()).join(', ') || 'Unknown';
+    return this.book?.authors.map((author: any) => author.author.key.split('/').pop()).join(', ') || '';
   }
 
-  getPublicationYear(): string {
-    return this.book?.publishYear ? new Date(this.book.publishYear).getFullYear().toString() : 'Unknown';
-  }
 
   onImageError(event: Event) {
     (event.target as HTMLImageElement).src = '../../../assets/placeolder-book.png';
