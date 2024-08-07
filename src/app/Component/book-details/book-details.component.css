@@ -48,6 +48,12 @@
     color: #666;
 }
 
+.book-rating {
+    font-size: 1.2em;
+    margin: 15px 0;
+    color: #666;
+}
+
 .book-genres {
     font-size: 1.2em;
     margin: 15px 0;

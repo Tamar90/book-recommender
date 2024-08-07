@@ -18,4 +18,8 @@ export class BookService {
   getBookDetails(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}${id}.json`);
   }
+
+  getBookRating(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}${id}/ratings.json`);
+  }
 }

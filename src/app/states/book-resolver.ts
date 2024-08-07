@@ -19,7 +19,7 @@ export class BookResolver implements Resolve<Book[]> {
         if (cachedBooks.length) {
             return of(cachedBooks);
         } else {
-            return this.bookService.searchBooks('bestsellers&limit=60').pipe(
+            return this.bookService.searchBooks('bestsellers&limit=10').pipe(
                 map(data => data.docs.map((item: any) => new Book(item))),
                 tap(books => this.bookStateService.setBooks(books)),
                 catchError(error => {

@@ -72,3 +72,11 @@ mat-form-field .mat-form-field-outline .mat-form-field-outline-notched {
 .book-title {
   font-size: 14px;
 }
+
+mat-progress-spinner {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 16px;
+}

@@ -26,7 +26,7 @@ export class BookListComponent {
 
   selectBook(book: Book) {
     if (book.id) {
-      this.router.navigate(['/book', book.id]);
+      this.router.navigate(['/book', book.id], { state: { book: book } });
     } else {
       this.router.navigate(['/book-not-found']);
     }
