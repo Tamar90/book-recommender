@@ -12,6 +12,7 @@ export class BookService {
   }
 
   searchBooks(query: string): Observable<any> {
+    console.log(query);
     return this.http.get(`${this.baseUrl}/search.json?q=${query}`);
   }
 

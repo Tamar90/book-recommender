@@ -6,6 +6,7 @@ export class Book {
     publishYear?: number;
     subjects?: string[];
     description?: string;
+    isHovered?: boolean = false;
 
     constructor(data: any) {
       this.id = data.key || '';

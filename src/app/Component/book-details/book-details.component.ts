@@ -29,6 +29,7 @@ export class BookDetailsComponent implements OnInit {
     if (bookId) {
       this.bookService.getBookDetails(bookId).subscribe({
         next: (data: any) => {
+          console.log(data);
           this.book = data;
         },
         error: (error) => {
@@ -47,5 +48,9 @@ export class BookDetailsComponent implements OnInit {
 
   getPublicationYear(): string {
     return this.book?.publishYear ? new Date(this.book.publishYear).getFullYear().toString() : 'Unknown';
+  }
+
+  onImageError(event: Event) {
+    (event.target as HTMLImageElement).src = '../../../assets/placeolder-book.png';
   }
 }

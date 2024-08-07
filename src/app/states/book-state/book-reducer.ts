@@ -5,10 +5,10 @@ import { Book } from '../../models/book.model';
 export interface BookState {
   books: Book[];
   loading: boolean;
-  error: any;
+  error: string | null;
   searchQuery: string;
   searchLoading: boolean;
-  searchError: any;
+  searchError: string | null;
 }
 
 export const initialState: BookState = {
@@ -19,6 +19,7 @@ export const initialState: BookState = {
   searchLoading: false,
   searchError: null
 };
+
 
 export const bookReducer = createReducer(
   initialState,

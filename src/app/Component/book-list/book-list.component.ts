@@ -15,6 +15,7 @@ export class BookListComponent {
   @Input() books: Book[] = [];
   currentPage: number = 1; 
   itemsPerPage: number = 10;
+  hoveredBook: Book | null = null;
 
   constructor(private router: Router) {}
 
@@ -25,9 +26,17 @@ export class BookListComponent {
   selectBook(book: Book) {
     this.router.navigate(['/book', book.id]);
   }
+
   onPageChange(page: number) {
     this.currentPage = page;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  
+
+  onMouseEnter(book: Book) {
+    this.hoveredBook = book;
+  }
+
+  onMouseLeave() {
+    this.hoveredBook = null;
+  }
 }

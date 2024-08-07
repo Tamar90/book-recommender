@@ -1,18 +1,49 @@
-
 .search-container {
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 600px; /* רוחב מקסימלי לתיבה */
+  margin: 0 auto; /* מיקום במרכז */
+  padding: 20px; /* ריווח פנימי */
+  display: flex;
+  justify-content: center; /* מרכז את התיבה אופקית */
 }
 
 mat-form-field {
-  width: 100%;
+  width: 100%; /* מבטיח שהתיבה תתפוס את כל רוחב הקונטיינר */
 }
 
-mat-option {
+mat-form-field .mat-form-field-wrapper {
+  border-radius: 8px; /* פינות עגולות */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* הצללה קלה */
+}
+
+mat-form-field .mat-form-field-flex {
+  background-color: #ffffff; /* צבע רקע לבן */
+  border-radius: 4px; /* פינות עגולות */
+}
+
+mat-form-field .mat-form-field-label {
+  color: #333; /* צבע טקסט כהה */
+}
+
+.mat-form-field-underline {
+  display: none; /* הסתרת הקו התחתון */
+}
+
+mat-form-field .mat-form-field-outline {
+  border-color: #007bff; /* צבע הגבול */
+}
+
+mat-form-field .mat-form-field-outline .mat-form-field-outline-start,
+mat-form-field .mat-form-field-outline .mat-form-field-outline-end,
+mat-form-field .mat-form-field-outline .mat-form-field-outline-notched {
+  border-color: #007bff; /* צבע הגבול */
+}
+
+.mat-option {
   cursor: pointer;
+  font-size: 14px;
 }
 
-mat-option:hover {
-  background-color: #f0f0f0;
+.mat-option:hover {
+  background-color: #f0f0f0; /* צבע רקע בהhover */
 }
