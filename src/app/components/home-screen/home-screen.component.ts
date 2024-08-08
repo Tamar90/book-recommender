@@ -7,6 +7,7 @@ import { BookListComponent } from '../book-list/book-list.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { BookStateService } from '../../states/book-state-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
@@ -20,7 +21,7 @@ export class HomeScreenComponent implements OnInit {
   books: Book[] = [];
   isLoading = true;
 
-  constructor(private bookService: BookService, private bookStateService: BookStateService) { }
+  constructor(private bookService: BookService, private bookStateService: BookStateService, private router: Router) { }
 
   ngOnInit() {
     const cachedBooks = this.bookStateService.getBooks();
@@ -37,6 +38,7 @@ export class HomeScreenComponent implements OnInit {
         error: (error) => {
           console.error('Error fetching books:', error);
           this.isLoading = false;
+          this.router.navigate(['/book-not-found']);
         }
       });
     }
